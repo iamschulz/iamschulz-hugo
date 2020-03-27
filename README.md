@@ -5,11 +5,13 @@
   - https://lab.uberspace.de/guide_hugo.html
   - serve `./dist`
 - git clone with submodules
-  - pull theme from theme repo
-  - pull posts and statics from content repo
+  - `git clone --recurse-submodules -j2 https://github.com/iamschulz/iamschulz-hugo.git`
+  - note that my blog content is private
 - `hugo --destination ./dist`
 
 
 ## update
-- update content md
-- `hugo --cleanDestinationDir --destination ./dist`
+- pull new content from submodule
+  - `git submodule foreach git pull`
+- render new static site
+  - `hugo --cleanDestinationDir --destination ./dist`
