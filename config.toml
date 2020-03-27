@@ -1,0 +1,10 @@
+baseURL = "/"
+languageCode = "de-de"
+title = "i am schulz"
+theme = "iamschulz"
+
+[taxonomies]
+  category = "categories"
+
+[minify]
+  minifyOutput = true
