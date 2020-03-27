@@ -2,6 +2,8 @@ baseURL = "/"
 languageCode = "de-de"
 title = "i am schulz"
 theme = "iamschulz-hugo-theme"
+contentDir = "iamschulz-hugo-content/content"
+staticDir = "iamschulz-hugo-content/static"
 
 [taxonomies]
   category = "categories"
