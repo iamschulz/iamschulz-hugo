@@ -1,0 +1,3 @@
+[submodule "themes/iamschulz-hugo-theme"]
+	path = themes/iamschulz-hugo-theme
+	url = https://github.com/iamschulz/iamschulz-hugo-theme
