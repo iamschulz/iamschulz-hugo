@@ -1,6 +1,6 @@
 [submodule "themes/iamschulz-hugo-theme"]
 	path = themes/iamschulz-hugo-theme
-	url = https://github.com/iamschulz/iamschulz-hugo-theme
+	url = git@github.com:iamschulz/iamschulz-hugo-theme.git
 [submodule "iamschulz-hugo-content"]
 	path = iamschulz-hugo-content
-	url = https://github.com/iamschulz/iamschulz-hugo-content
+	url = git@github.com:iamschulz/iamschulz-hugo-content.git
