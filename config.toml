@@ -10,3 +10,7 @@ staticDir = "iamschulz-hugo-content/static"
 
 [minify]
   minifyOutput = true
+
+[youtube]
+  disable = false
+  privacyEnhanced = true
