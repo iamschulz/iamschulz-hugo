@@ -14,3 +14,8 @@ staticDir = "iamschulz-hugo-content/static"
 [youtube]
   disable = false
   privacyEnhanced = true
+
+[markup]
+  [markup.tableOfContents]
+    endLevel = 2
+    startLevel = 1
