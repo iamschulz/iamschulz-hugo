@@ -5,6 +5,10 @@ theme = "iamschulz-hugo-theme"
 contentDir = "iamschulz-hugo-content/content"
 staticDir = "iamschulz-hugo-content/static"
 
+[params]
+  author = "Daniel Schulz"
+  description = "and this is my website"
+
 [taxonomies]
   category = "categories"
 
