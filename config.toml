@@ -12,6 +12,25 @@ staticDir = "iamschulz-hugo-content/static"
 [taxonomies]
   category = "categories"
 
+[menu]
+  [[menu.main]]
+    name = "Tech"
+    url = "/categories/tech/"
+    pre = "code-solid"
+    weight = -120
+
+  [[menu.main]]
+    name = "Video"
+    url = "/categories/video/"
+    pre = "video-solid"
+    weight = -110
+
+  [[menu.main]]
+    name = "Art"
+    url = "/categories/art/"
+    pre = "palette-solid"
+    weight = -100
+
 [minify]
   minifyOutput = true
 
