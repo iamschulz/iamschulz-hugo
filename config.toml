@@ -1,5 +1,5 @@
 baseURL = "/"
-languageCode = "de"
+languageCode = "en"
 title = "i am schulz"
 theme = "iamschulz-hugo-theme"
 contentDir = "iamschulz-hugo-content/content"
