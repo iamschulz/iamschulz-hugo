@@ -8,6 +8,7 @@ staticDir = "iamschulz-hugo-content/static"
 [params]
   author = "Daniel Schulz"
   description = "and this is my website"
+  apiProxy = "https://iamschulz.de/api-proxy:1337?query="
 
 [taxonomies]
   category = "categories"
