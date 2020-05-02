@@ -1,4 +1,4 @@
-baseURL = "/"
+baseURL = "https://next.iamschulz.de"
 languageCode = "en"
 title = "i am schulz"
 theme = "iamschulz-hugo-theme"
@@ -9,6 +9,7 @@ staticDir = "iamschulz-hugo-content/static"
   author = "Daniel Schulz"
   description = "and this is my website"
   apiProxy = "https://iamschulz.de/api-proxy:1337?query="
+  indiewebMail = "hallo@iamschulz.de"
 
 [taxonomies]
   category = "categories"
