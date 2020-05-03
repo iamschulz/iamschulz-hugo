@@ -8,7 +8,7 @@ staticDir = "iamschulz-hugo-content/static"
 [params]
   author = "Daniel Schulz"
   description = "and this is my website"
-  apiProxy = "http://iamschulz.de:1337/api-proxy?query="
+  apiProxy = "http://iamschulz.de/api-proxy:1337?query="
   indiewebMail = "hallo@iamschulz.de"
   webmentionURL = "next.iamschulz.de"
 
