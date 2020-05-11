@@ -1,4 +1,4 @@
-baseURL = "https://next.iamschulz.de"
+baseURL = "https://iamschulz.com"
 languageCode = "en"
 title = "i am schulz"
 theme = "iamschulz-hugo-theme"
@@ -10,7 +10,7 @@ staticDir = "iamschulz-hugo-content/static"
   description = "and this is my website"
   apiProxy = "https://iamschulz.de/api-proxy:1337?query="
   indiewebMail = "hallo@iamschulz.de"
-  webmentionURL = "next.iamschulz.de"
+  webmentionURL = "iamschulz.com"
 
 [taxonomies]
   category = "categories"
