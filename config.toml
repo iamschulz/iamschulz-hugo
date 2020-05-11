@@ -34,6 +34,12 @@ staticDir = "iamschulz-hugo-content/static"
     pre = "palette-solid"
     weight = -100
 
+[imaging]
+  resampleFilter = "CatmullRom"
+  quality = 85
+  disableDate = false
+  disableLatLong = false
+
 [minify]
   minifyOutput = true
 
