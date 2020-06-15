@@ -11,6 +11,7 @@ staticDir = "iamschulz-hugo-content/static"
   apiProxy = "https://iamschulz.com/api-proxy:1337?query="
   indiewebMail = "hallo@iamschulz.de"
   webmentionURL = "iamschulz.com"
+  monetization = "$ilp.uphold.com/emhMEXmNazrU"
 
 [taxonomies]
   category = "categories"
