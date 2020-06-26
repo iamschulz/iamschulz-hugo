@@ -1,4 +1,4 @@
+node_modules/
+resources/
 dist/
 public/
-resources/_gen/
-deploy_key
