@@ -1,0 +1,87 @@
+#!/usr/bin/env bash
+
+function usage() {
+cat<<EOF
+Usage: $0 <command>
+
+Commands:
+    install         Pulls project and installs dependencies
+    build           Build into specified directory, accepts project path as arg
+    serve           Serve project locally, accepts project path as arg
+    deploy          Deploys project to live environment, accepts deploy path as arg
+    cleanup         Delete all temporary files
+EOF
+exit 0
+}
+
+function install() {
+    echo "Installing hugo/iamschulz"
+    git pull --recurse-submodule
+    yarn install
+    yarn install --cwd themes/iamschulz-hugo-theme
+}
+
+function build() {
+    pwd
+    local targetDir=$1
+    if [[ "$targetDir" == "" ]]; then
+        targetDir="public"
+    fi
+
+    hugo -d $targetDir
+    node convert-images.js dir="./$targetDir"
+}
+
+function serve() {
+    local targetDir=$1
+    if [[ "$targetDir" == "" ]]; then
+        targetDir="public"
+    fi
+
+    node convert-images.js dir="./$targetDir"
+    hugo server -d $targetDir
+}
+
+function cleanup() {
+    rm -rf public
+    rm -rf resources
+    rm -rf node_modules
+}
+
+function deploy() {
+    local targetDir=$1
+    if [[ "$targetDir" == "" ]]; then
+        targetDir="../html/next/"
+    fi
+
+    install
+    build public
+    mv public/ $targetDir
+}
+
+
+
+
+### Commands ###
+
+subcommand=$1;
+
+if [ -z "$subcommand" ]; then
+    usage
+fi
+
+shift
+case "$subcommand" in
+    install)
+        install;;
+    build)
+        build $@;;
+    serve)
+        serve $@;;
+    cleanup)
+        cleanup;;
+    deploy)
+        deploy $@;;
+    *)
+        usage;;
+esac
