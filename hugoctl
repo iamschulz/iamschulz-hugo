@@ -45,6 +45,7 @@ function cleanup() {
     rm -rf public
     rm -rf resources
     rm -rf node_modules
+    rm -rf themes/iamschulz-hugo-theme/node_modules
 }
 
 function deploy() {
