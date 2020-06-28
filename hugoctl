@@ -7,7 +7,7 @@ Usage: $0 <command>
 Commands:
     install         Pulls project and installs dependencies
     build           Build into specified directory, accepts project path as arg
-    serve           Serve project locally, accepts project path as arg
+    dev             Serve project locally, accepts project path as arg
     deploy          Deploys project to live environment, accepts deploy path as arg
     cleanup         Delete all temporary files
 EOF
@@ -31,11 +31,13 @@ function build() {
     node convert-images.js dir="./$targetDir"
 }
 
-function serve() {
+function dev() {
     local targetDir=$1
     if [[ "$targetDir" == "" ]]; then
         targetDir="public"
     fi
+
+    yarn --cwd themes/iamschulz-hugo-theme watch &
 
     node convert-images.js dir="./$targetDir"
     hugo server -d $targetDir
@@ -77,8 +79,8 @@ case "$subcommand" in
         install;;
     build)
         build $@;;
-    serve)
-        serve $@;;
+    dev)
+        dev $@;;
     cleanup)
         cleanup;;
     deploy)
