@@ -22,7 +22,6 @@ function install() {
 }
 
 function build() {
-    pwd
     local targetDir=$1
     if [[ "$targetDir" == "" ]]; then
         targetDir="public"
@@ -56,7 +55,8 @@ function deploy() {
 
     install
     build public
-    mv public/ $targetDir
+    rsync -rc public/ $targetDir
+    echo "Finished deployment"
 }
 
 

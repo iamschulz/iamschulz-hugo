@@ -6,7 +6,6 @@ const webp = require('webp-converter');
 // globals
 const consoleLog = console.log;
 const images = [];
-const gifs = [];
 
 // parse args
 const config = {};
@@ -35,15 +34,10 @@ const crawlDir = (dir) => {
             (!webpExists) && (
                 mimetype && mimetype.split('/')[1] === 'jpeg'
                 || mimetype && mimetype.split('/')[1] === 'png'
+                || mimetype && mimetype.split('/')[1] === 'gif'
             )
         ) {
             images.push(path);
-        } else if (
-            (!webpExists) && (
-                mimetype && mimetype.split('/')[1] === 'gif'
-            )
-        ) {
-            gifs.push(path);
         } else if (isDir) {
             crawlDir(path);
         }
@@ -53,15 +47,18 @@ const crawlDir = (dir) => {
 const enableLog = () => { console.log = consoleLog };
 const disableLog = () => { console.log = function() {} };
 
-const convertImage = image => {
+const convertImage = (image, index) => {
+    const mimetype = mime.lookup(image);
     const webpPath = getWebpPath(image);
+    const webpMethod = mimetype && mimetype.split('/')[1] === 'gif' ? 'gwebp' : 'cwebp';
 
     process.stdout.clearLine();
     process.stdout.cursorTo(0);
-    process.stdout.write(`converting ${image}`);
+    process.stdout.write(`converting ${index + 1}/${images.length}...`);
 
     disableLog();
-    webp.cwebp(image, webpPath, "-q 85", function (status, error) {
+
+    webp[webpMethod](image, webpPath, "-q 85", function (status, error) {
 
         //if conversion successful status will be '100'
         //if conversion fails status will be '101'
@@ -74,33 +71,14 @@ const convertImage = image => {
         }
     });
     enableLog();
-}
 
-const convertGif = image => {
-    const webpPath = getWebpPath(image);
-
-    process.stdout.clearLine();
-    process.stdout.cursorTo(0);
-    process.stdout.write(`converting ${image}`);
-
-    disableLog();
-    webp.gwebp(image, webpPath, "-q 85", function (status, error) {
-
-        //if conversion successful status will be '100'
-        //if conversion fails status will be '101'
-        if (status > 100) {
-            enableLog();
-            process.stdout.clearLine();
-            process.stdout.cursorTo(0);
-            console.error('failed to convert', image);
-            disableLog();
-        }
-    });
-    enableLog();
+    if (index + 1 >= images.length) {
+        process.stdout.write('\ndone.\n');
+    }
 }
 
 // exec
+console.log('\nCreating images to webp...')
 crawlDir(dir);
-console.log(`found ${images.length + gifs.length} files`);
-images.forEach((image) => {convertImage(image)});
-gifs.forEach((image) => {convertGif(image)});
+console.log(`found ${images.length} new files`);
+images.forEach((image, index) => {convertImage(image, index)});
