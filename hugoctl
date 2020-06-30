@@ -18,7 +18,7 @@ function install() {
     echo "Installing hugo/iamschulz"
     git pull --recurse-submodule
     yarn install
-    yarn install --cwd themes/iamschulz-hugo-theme
+    yarn --cwd themes/iamschulz-hugo-theme install 
 }
 
 function build() {
@@ -27,6 +27,7 @@ function build() {
         targetDir="public"
     fi
 
+    yarn --cwd themes/iamschulz-hugo-theme build
     hugo -d $targetDir
     node convert-images.js dir="./$targetDir"
 }
