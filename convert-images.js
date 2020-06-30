@@ -51,6 +51,7 @@ const convertImage = (image, index) => {
     const mimetype = mime.lookup(image);
     const webpPath = getWebpPath(image);
     const webpMethod = mimetype && mimetype.split('/')[1] === 'gif' ? 'gwebp' : 'cwebp';
+    const additionalFlags = mimetype && mimetype.split('/')[1] === 'gif' ? '-mixed' : '';
 
     process.stdout.clearLine();
     process.stdout.cursorTo(0);
@@ -58,7 +59,7 @@ const convertImage = (image, index) => {
 
     disableLog();
 
-    webp[webpMethod](image, webpPath, "-q 85", function (status, error) {
+    webp[webpMethod](image, webpPath, `-q 85 ${additionalFlags}`, function (status, error) {
 
         //if conversion successful status will be '100'
         //if conversion fails status will be '101'
@@ -78,7 +79,7 @@ const convertImage = (image, index) => {
 }
 
 // exec
-console.log('\nCreating images to webp...')
+console.log('\nConverting images to webp...')
 crawlDir(dir);
 console.log(`found ${images.length} new files`);
 images.forEach((image, index) => {convertImage(image, index)});
