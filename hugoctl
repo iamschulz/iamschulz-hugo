@@ -28,7 +28,7 @@ function build() {
     fi
 
     yarn --cwd themes/iamschulz-hugo-theme build
-    hugo -d $targetDir
+    hugo -d $targetDir --ignoreCache --cleanDestinationDir
     node convert-images.js dir="./$targetDir"
 }
 
