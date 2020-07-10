@@ -28,7 +28,7 @@ function build() {
     fi
 
     yarn --cwd themes/iamschulz-hugo-theme build
-    hugo -d $targetDir --ignoreCache --cleanDestinationDir
+    hugo -d $targetDir --cacheDir $HOME/tmp --cleanDestinationDir
     node convert-images.js dir="./$targetDir"
 }
 
@@ -49,6 +49,7 @@ function cleanup() {
     rm -rf resources
     rm -rf node_modules
     rm -rf themes/iamschulz-hugo-theme/node_modules
+    rm -rf $HOME/tmp/iamschulz-hugo
 }
 
 function deploy() {
