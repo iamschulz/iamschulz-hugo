@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+echo "Updating HTTP/2 Push Headers..."
 pushFiles=("index.css" "index.js")
 headerString='Link "</fonts/share-v10-latin-700.woff2>;rel=preload;as=font'
 
@@ -34,3 +35,4 @@ fi
 
 # ENGAGE!
 uberspace web header set iamschulz.com/ ${headerString}
+echo "Successfully uüdated HTTP/2 Push Headers!"
