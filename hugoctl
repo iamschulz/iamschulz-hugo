@@ -60,6 +60,7 @@ function deploy() {
 
     install
     build public
+    echo "Syncing files to prod directory"
     rsync -rc public/ $targetDir
     ./updatePushHeaders.sh
     echo "Finished deployment"

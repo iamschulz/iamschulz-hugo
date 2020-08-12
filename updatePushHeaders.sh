@@ -35,4 +35,4 @@ fi
 
 # ENGAGE!
 uberspace web header set iamschulz.com/ ${headerString}
-echo "Successfully uüdated HTTP/2 Push Headers!"
+echo "Successfully updated HTTP/2 Push Headers!"
