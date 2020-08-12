@@ -61,6 +61,7 @@ function deploy() {
     install
     build public
     rsync -rc public/ $targetDir
+    ./updatePushHeaders.sh
     echo "Finished deployment"
 }
 
