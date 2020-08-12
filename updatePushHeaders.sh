@@ -2,13 +2,13 @@
 
 echo "Updating HTTP/2 Push Headers..."
 pushFiles=("index.css" "index.js")
-headerString='Link "</fonts/share-v10-latin-700.woff2>;rel=preload;as=font'
+headerString='Link "</fonts/share-v10-latin-700.woff2>;rel=preload;as=font;crossorigin'
 
 for i in "${pushFiles[@]}"
 do
     :
     fileName=$(cat ./themes/iamschulz-hugo-theme/data/assetManifest.json | jq "[. | to_entries[] | select(.key | startswith(\""$i"\")) | .value][0]") # read value from manifest
-    fileName=$(echo $fileName | sed 's/\"//g') # sanitize doublequotes
+    fileName=$(sed "s/\"//g" <<< "$fileName") # sanitize doublequotes
     fileExt="${fileName##*.}"
     headerString="${headerString},</$fileName>;rel=preload"
 
