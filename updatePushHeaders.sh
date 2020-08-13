@@ -34,5 +34,8 @@ then
 fi
 
 # ENGAGE!
-uberspace web header suppress iamschulz.com/js Link
 uberspace web header set iamschulz.com/ ${headerString}
+uberspace web header suppress iamschulz.com/js Link
+uberspace web header suppress iamschulz.com/css Link
+uberspace web header suppress iamschulz.com/fonts Link
+uberspace web header suppress iamschulz.com/img Link
