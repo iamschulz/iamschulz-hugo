@@ -34,5 +34,5 @@ then
 fi
 
 # ENGAGE!
+uberspace web header suppress iamschulz.com/js Link
 uberspace web header set iamschulz.com/ ${headerString}
-echo "Successfully updated HTTP/2 Push Headers!"
