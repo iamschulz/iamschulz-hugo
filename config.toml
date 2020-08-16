@@ -3,7 +3,7 @@ languageCode = "en"
 title = "i am schulz"
 theme = "iamschulz-hugo-theme"
 contentDir = "iamschulz-hugo-content/content"
-staticDir = "iamschulz-hugo-content/static"
+staticDir = ["static", "iamschulz-hugo-content/static"]
 
 [params]
   author = "Daniel Schulz"
@@ -62,3 +62,4 @@ staticDir = "iamschulz-hugo-content/static"
     noClasses = true
     style = "monokai"
     tabWidth = 4
+    
