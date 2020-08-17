@@ -26,7 +26,7 @@ do
 done
 
 # add closing doublequote
-headerString="${headerString}\";"
+headerString="${headerString}\""
 
 # ENGAGE!
 sed -i "s|$regex|$headerString|gm" ${htaccessFile}
