@@ -2,7 +2,7 @@
 
 echo "Updating HTTP/2 Push Headers..."
 pushFiles=("index.css" "index.js")
-headerString='Header set Link "'
+headerString='Header set Link "</fonts/share-v10-latin-700.woff2>;rel=preload;as=font;crossorigin'
 htaccessFile='public/.htaccess'
 regex='## HTTP2 Push Placeholder'
 
