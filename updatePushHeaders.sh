@@ -2,7 +2,9 @@
 
 echo "Updating HTTP/2 Push Headers..."
 pushFiles=("index.css" "index.js")
-headerString='Link "</fonts/share-v10-latin-700.woff2>;rel=preload;as=font;crossorigin'
+headerString='Header set Link "</fonts/share-v10-latin-700.woff2>;rel=preload;as=font;crossorigin'
+htaccessFile='public/.htaccess'
+regex='## HTTP2 Push Placeholder'
 
 for i in "${pushFiles[@]}"
 do
@@ -24,18 +26,9 @@ do
 done
 
 # add closing doublequote
-headerString="${headerString}\""
-
-# check if we're on host
-if ! command -v uberspace web header list &> /dev/null
-then
-    echo "uberspace web headers not found on this system. Sure you're on uberspace?"
-    exit
-fi
+headerString="${headerString}\";"
 
 # ENGAGE!
-uberspace web header set iamschulz.com/ ${headerString}
-uberspace web header suppress iamschulz.com/js Link
-uberspace web header suppress iamschulz.com/css Link
-uberspace web header suppress iamschulz.com/fonts Link
-uberspace web header suppress iamschulz.com/img Link
+sed -i "s|$regex|$headerString|gm" ${htaccessFile}
+
+echo "Done."
