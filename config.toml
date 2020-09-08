@@ -8,7 +8,7 @@ staticDir = ["static", "iamschulz-hugo-content/static"]
 [params]
   author = "Daniel Schulz"
   description = "and this is my website"
-  apiProxy = "https://iamschulz.com/api-proxy:1337?query="
+  apiProxy = "https://iamschulz.com/api-proxy?query="
   indiewebMail = "hallo@iamschulz.de"
   webmentionURL = "iamschulz.com"
   monetization = "$ilp.uphold.com/emhMEXmNazrU"
