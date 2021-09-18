@@ -21,7 +21,27 @@ function install() {
     yarn --cwd themes/iamschulz-hugo-theme install 
 }
 
+function purgeCache() {
+    echo "Purging Cloudflare Cache"
+    urls='{"files":["'https://iamschulz.com','`hugo list all | egrep -o 'https?://[^ ,]+' | sed ':a;N;$!ba;s/\n/","/g'`'"]}'
+    curl -X POST "https://api.cloudflare.com/client/v4/zones/5c2be641b5bc5530a92693d2504d2f91/purge_cache" \
+        -H "Authorization: Bearer oG1sVL68INjo5muWwGkndL_7yx1J-5zU6ch1mSpH" \
+        -H "Content-Type: application/json" \
+        --data $urls
+}
+
 function build() {
+    local targetDir=$1
+    if [[ "$targetDir" == "" ]]; then
+        targetDir="public"
+    fi
+
+    yarn --cwd themes/iamschulz-hugo-theme build
+    hugo -d $targetDir --cacheDir $HOME/tmp
+    node convert-images.js dir="./$targetDir"
+}
+
+function buildClean() {
     local targetDir=$1
     if [[ "$targetDir" == "" ]]; then
         targetDir="public"
@@ -50,6 +70,7 @@ function cleanup() {
     rm -rf node_modules
     rm -rf themes/iamschulz-hugo-theme/node_modules
     rm -rf $HOME/tmp/iamschulz-hugo
+    echo "cleanup done"
 }
 
 function deploy() {
@@ -64,6 +85,7 @@ function deploy() {
     echo "Syncing files to prod directory"
     rsync -rc public/ $targetDir
     echo "Syncing done"
+    purgeCache
     echo "Finished deployment"
 }
 
@@ -90,6 +112,8 @@ case "$subcommand" in
         cleanup;;
     deploy)
         deploy $@;;
+    purge)
+        purgeCache;;
     *)
         usage;;
 esac
