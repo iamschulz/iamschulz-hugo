@@ -2,5 +2,8 @@
   "dependencies": {
     "mime-types": "^2.1.27",
     "webp-converter": "^2.2.3"
+  },
+  "devDependencies": {
+    "sharp": "^0.29.1"
   }
 }
