@@ -59,46 +59,14 @@ const disableLog = () => {
 	console.log = function () {};
 };
 
-const convertImageBaw = (imageUrl, index) => {
+// todo: fix animated gifs in avif
+// todo: fix progression counter
+const convertImage = (imageUrl, index) => {
 	const mimetype = mime.lookup(imageUrl);
 	const webpPath = getWebpPath(imageUrl);
-	const webpMethod =
-		mimetype && mimetype.split("/")[1] === "gif" ? "gwebp" : "cwebp";
-	const additionalFlags =
-		mimetype && mimetype.split("/")[1] === "gif" ? "-mixed" : "";
-
-	process.stdout.clearLine();
-	process.stdout.cursorTo(0);
-	process.stdout.write(`converting ${index + 1}/${images.length}...`);
-
-	disableLog();
-
-	webp[webpMethod](
-		imageUrl,
-		webpPath,
-		`-q 85 ${additionalFlags}`,
-		function (status, error) {
-			//if conversion successful status will be '100'
-			//if conversion fails status will be '101'
-			if (status > 100) {
-				process.stdout.clearLine();
-				process.stdout.cursorTo(0);
-				enableLog();
-				console.error("failed to convert", imageUrl);
-				disableLog();
-			}
-		}
-	);
-	enableLog();
-
-	if (index + 1 >= images.length) {
-		process.stdout.write("\ndone.\n");
-	}
-};
-
-const convertImage = (imageUrl, index) => {
-	const webpPath = getWebpPath(imageUrl);
 	const avifPath = getAvifPath(imageUrl);
+
+	const isAnimated = mimetype && mimetype.split("/")[1] === "gif";
 
 	process.stdout.clearLine();
 	process.stdout.cursorTo(0);
@@ -112,11 +80,11 @@ const convertImage = (imageUrl, index) => {
 			return;
 		}
 
-		sharp(inputBuffer)
+		sharp(inputBuffer, { animated: isAnimated })
 			.webp({ quality: 85, speed: 1 })
 			.toFile(webpPath, (err, info) => {});
 
-		sharp(inputBuffer)
+		sharp(inputBuffer, { animated: isAnimated })
 			.avif({ quality: 55, speed: 1 })
 			.toFile(avifPath, (err, info) => {});
 	});
