@@ -23,7 +23,7 @@ function install() {
 
 function purgeCache() {
     echo "Purging Cloudflare Cache"
-    urls='{"files":["'https://iamschulz.com','`hugo list all | egrep -o 'https?://[^ ,]+' | sed ':a;N;$!ba;s/\n/","/g'`'"]}'
+    urls='{"files":["'`hugo list all | egrep -o 'https?://[^ ,]+' | tr '\n' ',' | sed 's/,/","/g'`https://iamschulz.com'"]}'
     curl -X POST "https://api.cloudflare.com/client/v4/zones/5c2be641b5bc5530a92693d2504d2f91/purge_cache" \
         -H "Authorization: Bearer oG1sVL68INjo5muWwGkndL_7yx1J-5zU6ch1mSpH" \
         -H "Content-Type: application/json" \
